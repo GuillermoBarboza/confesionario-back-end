@@ -2,12 +2,11 @@ const Confession = require("../models/Confession");
 const Comment = require("../models/Comment");
 const Response = require("../models/Response");
 const User = require("../models/User");
-const { response } = require("express");
 
 module.exports = {
   getAllConfession: async (req, res) => {
-    const confessions = await Confession.find().limit(35);
-
+    const confessions = await Confession.find();
+    
     res.json(confessions);
   },
 
