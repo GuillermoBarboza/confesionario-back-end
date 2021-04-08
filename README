@@ -1,0 +1,3 @@
+Webapp for local artists, the goal is to provide a space where to put all the stuff out, free exhibit of art!
+
+current state of the api is in development, https://feria-de-artistas-back.vercel.app/products returns a string.
