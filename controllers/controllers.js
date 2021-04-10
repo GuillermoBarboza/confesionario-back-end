@@ -27,6 +27,8 @@ module.exports = {
   },
 
   postConfession: async (req, res) => {
+    console.log('form data', req.body);
+    
     const confession = await new Confession({
       name: req.body.name,
       confessionTitle: req.body.confessionTitle,
@@ -35,7 +37,7 @@ module.exports = {
 
     await confession.save();
 
-    res.json("Confession Submitted");
+    res.json('https://pochinuy.vercel.app/confesiones.html');
   },
 
   postComment: async (req, res) => {

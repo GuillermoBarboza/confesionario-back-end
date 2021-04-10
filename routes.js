@@ -4,9 +4,10 @@ const routes = (app) => {
     app.get('/', controllers.getAllConfession),
     app.get('/confesion', controllers.getConfession),
     app.get('/comentarios', controllers.getConfessionComments),
-    app.get('/confesar', controllers.postConfession),
-    app.get('/comentar', controllers.postComment),
-    app.get('/responder', controllers.postResponse)
+    app.post('/confesar', controllers.postConfession),
+    app.post('/comentar', controllers.postComment),
+    app.post('/responder', controllers.postResponse),
+    app.post('/', (req, res) => { res.json('ok')})
 } 
 
 module.exports = routes; 
