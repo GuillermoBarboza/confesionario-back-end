@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
     author: String,
-    commentTitle: String,
     commentText: String,
     confession: { type: Schema.Types.ObjectId, ref: 'Confession' },
     responseBoard: [{ type: Schema.Types.ObjectId, ref: 'Response' }]

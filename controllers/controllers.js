@@ -11,24 +11,24 @@ module.exports = {
   },
 
   getConfession: async (req, res) => {
-    const confession = await Confession.findById({
-      _id: req.query.id,
-    }).populate("comments");
 
+    
+    const confession = await Confession.findById({
+      _id: req.params.id,
+    }).populate("comments");
+    console.log(confession);
     res.json(confession);
   },
 
   getConfessionComments: async (req, res) => {
     const confessionComments = await Comment.find({
-        confession: req.query.id,
+        confession: req.params.id,
     }).populate("responseBoard");
 
     res.json(confessionComments);
   },
 
   postConfession: async (req, res) => {
-    console.log('form data', req.body);
-    
     const confession = await new Confession({
       name: req.body.name,
       confessionTitle: req.body.confessionTitle,
@@ -43,7 +43,6 @@ module.exports = {
   postComment: async (req, res) => {
     const comment = await new Comment({
       name: req.body.name,
-      commentTitle: req.body.commentTitle,
       commentText: req.body.commentText,
     });
 
