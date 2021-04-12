@@ -16,7 +16,6 @@ module.exports = {
     const confession = await Confession.findById({
       _id: req.params.id,
     }).populate("comments");
-    console.log(confession);
     res.json(confession);
   },
 
@@ -42,7 +41,7 @@ module.exports = {
 
   postComment: async (req, res) => {
     const comment = await new Comment({
-      name: req.body.name,
+      author: req.body.author,
       commentText: req.body.commentText,
     });
 
