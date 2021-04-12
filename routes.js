@@ -2,7 +2,7 @@ const controllers = require('./controllers/controllers')
 
 const routes = (app) => {
     app.get('/', controllers.getAllConfession),
-    app.get('/confesion', controllers.getConfession),
+    app.get('/:id', controllers.getConfession),
     app.get('/comentarios', controllers.getConfessionComments),
     app.post('/confesar', controllers.postConfession),
     app.post('/comentar', controllers.postComment),
