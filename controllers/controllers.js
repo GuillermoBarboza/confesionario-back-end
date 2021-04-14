@@ -27,6 +27,22 @@ module.exports = {
     res.json(confessionComments);
   },
 
+  deleteConfession: async (req, res) => {
+    const deletedConfesion = await Confession.deleteOne({
+        _id: req.body.id,
+    })
+
+    res.json('confession deleted');
+  },
+
+  deleteComment: async (req, res) => {
+    const deletedComment = await Comment.deleteOne({
+        _id: req.body.id,
+    })
+
+    res.json('comment deleted');
+  },
+
   postConfession: async (req, res) => {
     const confession = await new Confession({
       name: req.body.name,
