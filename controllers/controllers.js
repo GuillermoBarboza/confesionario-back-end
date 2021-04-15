@@ -6,13 +6,11 @@ const User = require("../models/User");
 module.exports = {
   getAllConfession: async (req, res) => {
     const confessions = await Confession.find();
-    
+
     res.json(confessions);
   },
 
   getConfession: async (req, res) => {
-
-    
     const confession = await Confession.findById({
       _id: req.params.id,
     }).populate("comments");
@@ -21,7 +19,7 @@ module.exports = {
 
   getConfessionComments: async (req, res) => {
     const confessionComments = await Comment.find({
-        confession: req.params.id,
+      confession: req.params.id,
     }).populate("responseBoard");
 
     res.json(confessionComments);
@@ -29,18 +27,21 @@ module.exports = {
 
   deleteConfession: async (req, res) => {
     const deletedConfesion = await Confession.deleteOne({
-        _id: req.body.id,
-    })
+      _id: req.body.id,
+    });
 
-    res.json('confession deleted');
+    res.json("confession deleted");
   },
 
   deleteComment: async (req, res) => {
     const deletedComment = await Comment.deleteOne({
-        _id: req.body.id,
-    })
-
-    res.json('comment deleted');
+      _id: req.body.id,
+    });
+    const deleteFromConf = await Confession.findOneAndUpdate(
+      { _id: req.body.confesionId },
+      { $pull: { comments: req.body.id } }
+    );
+    res.json("comment deleted");
   },
 
   postConfession: async (req, res) => {
@@ -52,7 +53,7 @@ module.exports = {
 
     await confession.save();
 
-    res.json('https://pochinuy.vercel.app/confesiones.html');
+    res.json("https://pochinuy.vercel.app/confesiones.html");
   },
 
   postComment: async (req, res) => {
