@@ -53,7 +53,7 @@ module.exports = {
 
     await confession.save();
 
-    res.json("https://pochinuy.vercel.app/confesiones.html");
+    res.json("confesion guardada");
   },
 
   postComment: async (req, res) => {
